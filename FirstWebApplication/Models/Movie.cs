@@ -15,5 +15,7 @@ namespace MvcMovie.Models
     public class MovieDBContext : DbContext
     {
         public DbSet<Movie> Movies { get; set; }
+
+        //public System.Data.Entity.DbSet<FirstWebApplication.Models.Contact> Contacts { get; set; }
     }
 }

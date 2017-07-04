@@ -1,0 +1,26 @@
+﻿@model FirstWebApplication.Data.Models.Contact
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit page</h2>
+
+<form action="/Contact/Edit" method="post">
+    Name:<br>
+    <input type="text" name="Name" value="@Html.Display(model => model.Name)" required><br>
+    Email:<br>
+    <input type="email" name="Email" value="@Html.DisplayNameFor(model => model.Email)"required><br>
+    Phone number:<br />
+    <input id="demo-info-message"
+           type="text"
+           pattern="[+]?\d{11}|\d{9}"
+           name="Phone"
+           value="@Html.DisplayNameFor(model => model.Phone)"
+           >
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<div>
+    @Html.ActionLink("Back to the List", "Index")
+</div>
