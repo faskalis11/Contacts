@@ -87,7 +87,7 @@ namespace FirstWebApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: Movies/Edit/5
+        // GET: Contact/Edit/5
         [HttpPost]
         public ActionResult Edit(int? id)
         {

@@ -7,15 +7,15 @@
 
 <form action="/Contact/Edit" method="post">
     Name:<br>
-    <input type="text" name="Name" value="@Html.Display(model => model.Name)" required><br>
+    <input type="text" name="Name" value="@Html.DisplayFor(model => model.Name)" required><br>
     Email:<br>
-    <input type="email" name="Email" value="@Html.DisplayNameFor(model => model.Email)"required><br>
+    <input type="email" name="Email" value="@Html.DisplayFor(model => model.Email)" required><br>
     Phone number:<br />
     <input id="demo-info-message"
            type="text"
            pattern="[+]?\d{11}|\d{9}"
            name="Phone"
-           value="@Html.DisplayNameFor(model => model.Phone)"
+           value="@Html.DisplayFor(model => model.Phone)"
            >
     <br><br>
     <input type="submit" value="Submit">
