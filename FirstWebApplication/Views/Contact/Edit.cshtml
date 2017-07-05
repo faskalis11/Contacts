@@ -1,11 +1,16 @@
-﻿@model FirstWebApplication.Data.Models.Contact
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/MyStyle.css">
+</head>
+
+@model FirstWebApplication.Data.Models.Contact
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit page</h2>
+<h2>Edit contact</h2>
 
-<form action="/Contact/Edit" method="post">
+<form action="/Contact/EditContact" method="post">
+    <input type="text" name="Id" value="@Html.DisplayFor(model => model.Id)" required readonly hidden><br>
     Name:<br>
     <input type="text" name="Name" value="@Html.DisplayFor(model => model.Name)" required><br>
     Email:<br>

@@ -1,4 +1,8 @@
-﻿@model IEnumerable<FirstWebApplication.Data.Models.Contact>
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/MyStyle.css">
+</head>
+
+@model IEnumerable<FirstWebApplication.Data.Models.Contact>
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +19,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Phone</th>
-      <th></th>
+      <th>Options</th>
     </tr>
 
     @foreach (var item in Model)

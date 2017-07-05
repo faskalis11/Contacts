@@ -1,0 +1,25 @@
+﻿.red {
+    color: red;
+}
+
+.thick {
+    font-size: 20px;
+}
+
+.green {
+    color: green;
+}
+
+#contactsId {
+    text-align: center;
+    color: blue;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}

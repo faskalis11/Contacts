@@ -100,5 +100,22 @@ namespace FirstWebApplication.Controllers
                 return View(contact);
             }
         }
+
+        [HttpPost]
+        public ActionResult EditContact(Contact contact)
+        {
+            if (contact.Email == null || contact.Name == null || contact.Email.Trim().Length == 0 || contact.Name.Trim().Length == 0 || !contact.Email.Contains("@"))
+            {
+                return View();
+            }
+
+            //Phone number be empty, 861234567 and +37061234567
+            if (contact.Phone == null || contact.Phone.Length == 0 || contact.Phone.Length == 9 || contact.Phone.Length == 12)
+            {
+                _contactRepository.Update(contact);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

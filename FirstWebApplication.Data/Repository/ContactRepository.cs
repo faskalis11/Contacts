@@ -1,6 +1,5 @@
 ﻿using FirstWebApplication.Data.ContactAPI;
 using FirstWebApplication.Data.Models;
-using System;
 using System.Collections.Generic;
 
 namespace FirstWebApplication.Data.Repositories
@@ -31,7 +30,8 @@ namespace FirstWebApplication.Data.Repositories
 
         public Contact Update(Contact contact)
         {
-            throw new NotImplementedException();
+            contactsDictionary[contact.Id] = contact;
+            return contact;
         }
 
         public IEnumerable<Contact> Get()

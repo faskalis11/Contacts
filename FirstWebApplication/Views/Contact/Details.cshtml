@@ -1,15 +1,26 @@
-﻿@model FirstWebApplication.Data.Models.Contact
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/MyStyle.css">
+</head>
+
+@model FirstWebApplication.Data.Models.Contact
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="red">Details</h2>
 
-<div>
+<div class="thick">
     <h3>Person Info</h3>
     <hr />
 
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
