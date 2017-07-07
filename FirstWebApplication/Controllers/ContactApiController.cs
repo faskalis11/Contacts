@@ -32,7 +32,7 @@ namespace FirstWebApplication.Controllers
             }
             return Ok(contact);
         }
-        
+
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
@@ -46,14 +46,9 @@ namespace FirstWebApplication.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(int id)
+        public IHttpActionResult Put(Contact contact)
         {
-            // Fixinti 
-            var contact = _contactRepository.Get(id);
-            if (contact == null)
-            {
-                return BadRequest();
-            }
+            //Validacija
             _contactRepository.Update(contact);
             return Ok(contact);
         }

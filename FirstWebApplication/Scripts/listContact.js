@@ -23,4 +23,30 @@ app.controller('contactController', function ($scope, $http) {
 
     $http.get(uri)
         .then(function (response) { self.contacts = response.data; });
+
+
+    var uriDelete = '/api/ContactApi'
+    $scope.deleteFunc = function (contact) {
+        $http.delete(uriDelete + '/' + contact.Id).then(function (response) {
+            var index = self.contacts.indexOf(contact);
+            self.contacts.splice(index, 1);
+        });
+    }
+
+    var uriUpdate = '/api/ContactApi'
+    $scope.updateFunc = function (contact) {
+        $http.put().then(function (response) {
+            
+        });
+    }
+
+    var uriCreate= '/api/ContactApi'
+    $scope.createFunc = function (contact) {
+        $http.post().then(function (response) {
+            
+        });
+    }
 });
+
+
+

@@ -25,10 +25,13 @@
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
             <td>@Html.DisplayFor(modelItem => item.Phone)</td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                <form method="post" action="/contact/details/@item.Id">
+                    <input hidden="hidden" name="id" value="@item.Id" />
+                    <input type="submit" value="Details" />
+                </form>
                 <form method="post" action="/contact/edit/@item.Id">
                     <input hidden="hidden" name="id" value="@item.Id" />
-                    <input type="submit" value="Edit" />
+                    <input type="submit" value="Update" />
                 </form>
 
                 <form method="post" action="/contact/delete">
@@ -58,17 +61,26 @@
         </tr>
         <tr ng-repeat="item in vm.contacts">
             <td>{{item.Name}}</td>
-            <td>{{item.Phone}}</td>
             <td>{{item.Email}}</td>
+            <td>{{item.Phone}}</td>
+            <td>
+                <button ng-click="updateFunc(item)">Update</button>
+                <button ng-click="deleteFunc(item)">Delete</button>
+            </td>
         </tr>
     </table>
-</div>
-
-<div ng-app="contactApp" ng-controller="myCtrl">
-
-    First Name: <input type="text" ng-model="Name"><br>
-    Last Name: <input type="text" ng-model="Phone"><br>
-    <br>
-    Full Name: {{Name}} + " " + {{Phone}}
-
+    <button>Create</button>
+    <form action="/api/ContactApi" method="post">
+        Name:<br>
+        <input type="text" name="Name" required><br>
+        Email:<br>
+        <input type="email" name="Email" required><br>
+        Phone number:<br />
+        <input id="demo-info-message"
+               type="text"
+               pattern="[+]?\d{11}|\d{9}"
+               name="Phone">
+        <br>
+        <input type="submit" ng-click="createFunc(item)" value="Create">
+    </form>
 </div>

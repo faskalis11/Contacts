@@ -38,7 +38,7 @@ namespace FirstWebApplication.Controllers
             }
 
             //Phone number be empty, 861234567 and +37061234567
-            if (contact.Phone ==null || contact.Phone.Length == 0 || contact.Phone.Length == 9 || contact.Phone.Length == 12)
+            if (contact.Phone == null || contact.Phone.Length == 0 || contact.Phone.Length == 9 || contact.Phone.Length == 12)
             {
                 _contactRepository.Create(contact);
                 return RedirectToAction("Index");
@@ -94,7 +94,8 @@ namespace FirstWebApplication.Controllers
             if (id == null)
             {
                 return View("Error");
-            }else
+            }
+            else
             {
                 Contact contact = _contactRepository.Get(id.Value);
                 return View(contact);
