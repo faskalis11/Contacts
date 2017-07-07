@@ -1,11 +1,8 @@
 ﻿using FirstWebApplication.Data.ContactAPI;
 using FirstWebApplication.Data.Models;
 using FirstWebApplication.Data.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace FirstWebApplication.Controllers
@@ -19,18 +16,53 @@ namespace FirstWebApplication.Controllers
             _contactRepository = new ContactRepository();
         }
 
-        public IEnumerable<Contact> GetAllContacts()
+        [HttpGet]
+        public IEnumerable<Contact> Get()
         {
             return _contactRepository.Get();
         }
 
-        public IHttpActionResult GetContactById(int id)
+        [HttpGet]
+        public IHttpActionResult Get(int id)
         {
-            var contact = _contactRepository.Get().FirstOrDefault((c) => c.Id == id);
+            var contact = _contactRepository.Get(id);
             if (contact == null)
             {
                 return NotFound();
             }
+            return Ok(contact);
+        }
+        
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            var contact = _contactRepository.Get(id);
+            if (contact == null)
+            {
+                return BadRequest();
+            }
+            _contactRepository.Delete(id);
+            return Ok(contact);
+        }
+
+        [HttpPut]
+        public IHttpActionResult Put(int id)
+        {
+            // Fixinti 
+            var contact = _contactRepository.Get(id);
+            if (contact == null)
+            {
+                return BadRequest();
+            }
+            _contactRepository.Update(contact);
+            return Ok(contact);
+        }
+
+        [HttpPost]
+        public IHttpActionResult Post(Contact contact)
+        {
+            //validacija
+            _contactRepository.Create(contact);
             return Ok(contact);
         }
 

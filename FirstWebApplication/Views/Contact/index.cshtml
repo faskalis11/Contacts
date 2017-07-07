@@ -1,14 +1,10 @@
-﻿<head>
-    <link rel="stylesheet" type="text/css" href="~/Content/MyStyle.css">
-</head>
-
-@model IEnumerable<FirstWebApplication.Data.Models.Contact>
+﻿@model IEnumerable<FirstWebApplication.Data.Models.Contact>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>MVC</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -16,10 +12,10 @@
 
 <table id="ContactsId" class="table">
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Options</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Options</th>
     </tr>
 
     @foreach (var item in Model)
@@ -36,10 +32,43 @@
                 </form>
 
                 <form method="post" action="/contact/delete">
-                    <input hidden="hidden" name="id" value="@item.Id"/>
+                    <input hidden="hidden" name="id" value="@item.Id" />
                     <input type="submit" value="Delete" />
                 </form>
             </td>
         </tr>
     }
 </table>
+
+<div>
+    <div>
+        <h4>All Contacts by jQuerry</h4>
+        <ul id="contacts" />
+    </div>
+</div>
+
+<div ng-app="contactApp">
+    <h4>All Contacts by AngularJs 1.6.4</h4>
+    <table class="table" ng-controller="contactController as vm">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Options</th>
+        </tr>
+        <tr ng-repeat="item in vm.contacts">
+            <td>{{item.Name}}</td>
+            <td>{{item.Phone}}</td>
+            <td>{{item.Email}}</td>
+        </tr>
+    </table>
+</div>
+
+<div ng-app="contactApp" ng-controller="myCtrl">
+
+    First Name: <input type="text" ng-model="Name"><br>
+    Last Name: <input type="text" ng-model="Phone"><br>
+    <br>
+    Full Name: {{Name}} + " " + {{Phone}}
+
+</div>
