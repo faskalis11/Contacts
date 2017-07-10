@@ -43,7 +43,7 @@ app.controller('contactController', function ($scope, $http) {
     var uriCreate= '/api/ContactApi'
     $scope.createFunc = function (contact) {
         $http.post().then(function (response) {
-            
+            self.contacts.appendTo(contact);
         });
     }
 });

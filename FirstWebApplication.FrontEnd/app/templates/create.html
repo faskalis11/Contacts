@@ -1,0 +1,14 @@
+﻿<button>Create</button>
+<form action="/api/ContactApi" method="post">
+    Name:<br>
+    <input type="text" name="Name" required><br>
+    Email:<br>
+    <input type="email" name="Email" required><br>
+    Phone number:<br />
+    <input id="demo-info-message"
+           type="text"
+           pattern="[+]?\d{11}|\d{9}"
+           name="Phone">
+    <br>
+    <input type="submit" ng-click="createFunc(item)" value="Create">
+</form>

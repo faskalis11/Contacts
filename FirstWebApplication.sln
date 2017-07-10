@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWebApplication", "Firs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWebApplication.Data", "FirstWebApplication.Data\FirstWebApplication.Data.csproj", "{0CC73242-A15C-4F61-B63E-B1154EED4948}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWebApplication.Api", "FirstWebApplication.Api\FirstWebApplication.Api.csproj", "{ADB793C6-4253-447F-AAF5-D5147ABCE559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstWebApplication.FrontEnd", "FirstWebApplication.FrontEnd\FirstWebApplication.FrontEnd.csproj", "{CBF0C0EA-01B1-404D-A649-B5702F2ADC2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0CC73242-A15C-4F61-B63E-B1154EED4948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CC73242-A15C-4F61-B63E-B1154EED4948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CC73242-A15C-4F61-B63E-B1154EED4948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB793C6-4253-447F-AAF5-D5147ABCE559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB793C6-4253-447F-AAF5-D5147ABCE559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB793C6-4253-447F-AAF5-D5147ABCE559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB793C6-4253-447F-AAF5-D5147ABCE559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF0C0EA-01B1-404D-A649-B5702F2ADC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF0C0EA-01B1-404D-A649-B5702F2ADC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF0C0EA-01B1-404D-A649-B5702F2ADC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF0C0EA-01B1-404D-A649-B5702F2ADC2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

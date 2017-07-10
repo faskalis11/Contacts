@@ -1,0 +1,18 @@
+﻿<h4>All Contacts by AngularJs 1.6.4</h4>
+<table class="table" ng-controller="contactController as vm">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Options</th>
+    </tr>
+    <tr ng-repeat="item in vm.contacts">
+        <td>{{item.Name}}</td>
+        <td>{{item.Email}}</td>
+        <td>{{item.Phone}}</td>
+        <td>
+            <button ng-click="updateFunc(item)">Update</button>
+            <button ng-click="deleteFunc(item)">Delete</button>
+        </td>
+    </tr>
+</table>
