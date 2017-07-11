@@ -1,6 +1,6 @@
-﻿var app = angular.module('contactApp', ['ngRoute']);
+﻿var contactApp = angular.module('contactApp', ['ngRoute']);
 
-app.controller('contactController', ['$scope', '$http', function ($scope, $http) {
+contactApp.controller('contactController', ['$scope', '$http', function ($scope, $http) {
     var self = this;
 
     var uri = 'http://localhost:50691/api/ContactApi';
@@ -15,25 +15,59 @@ app.controller('contactController', ['$scope', '$http', function ($scope, $http)
             var index = self.contacts.indexOf(contact);
             self.contacts.splice(index, 1);
         });
-    }
+    };
 
-    var uriUpdate = '/api/ContactApi';
-    $scope.updateFunc = function (contact) {
-        $http.put().then(function (response) {
-            
-        });
-    }
+    var uriEdit = 'http://localhost:50691/api/ContactApi';
 
-    var uriCreate = '/api/ContactApi';
-    $scope.createFunc = function (contact) {
-        $http.post().then(function (response) {
-            self.contacts.appendTo(contact);
-        });
-    }
 }]);
 
-app.config(function ($routeProvider, +) {
+contactApp.controller('contactCreateController', function ($scope, $http, $location) {
+    $scope.contact = {};
+
+    var self = this;
+    var uriCreate = 'http://localhost:50691/api/ContactApi';
+
+    $scope.create = function () {
+        $http.post(uriCreate, $scope.contact).then(
+            function (response) {
+                $location.path("/");
+            });
+    };
+});
+
+contactApp.controller('contactEditController', function ($http, $routeParams, $location) {
+    var self = this;
+    $http({
+        method: 'GET',
+        url: 'http://localhost:50691/api/ContactApi',
+        params: { id: $routeParams.id }
+
+    }).then(function (response) {
+        self.contact = response.data;
+    });
+
+
+
+    self.edit = function () {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:50691/api/ContactApi',
+            params: { id: $routeParams.id },
+            data: self.contact
+
+        }).then(function (response) {
+            $location.url("/");
+        });
+    };
+});
+
+contactApp.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    $routeProvider.
-        when('/', { controller: 'contactController', templateUrl: 'app/templates/list.html' });
+    $routeProvider
+        .when('/', { controller: 'contactController', templateUrl: 'app/templates/list.html' })
+        .when('/create', { controller: 'contactCreateController', templateUrl: 'app/templates/create.html' })
+        .when("/edit/:id", {
+            templateUrl: "app/templates/edit.html",
+            controller: "contactEditController"
+        });
 });

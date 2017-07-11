@@ -30,6 +30,24 @@ namespace FirstWebApplication.Api
             };
 
             contactRepository.Create(contact);
+
+            contact = new Contact()
+            {
+                Email = "ddd@dd.lt",
+                Name = "ddd",
+                Phone = "867956125"
+            };
+
+            contactRepository.Create(contact);
+
+            contact = new Contact()
+            {
+                Email = "opo@fdsdf",
+                Name = "Geras blogas",
+                Phone = "334456852"
+            };
+
+            contactRepository.Create(contact);
         }
     }
 }

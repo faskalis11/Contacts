@@ -7,11 +7,12 @@
         <th>Options</th>
     </tr>
     <tr ng-repeat="item in vm.contacts">
+        <td hidden>{{item.Id}}</td>
         <td>{{item.Name}}</td>
         <td>{{item.Email}}</td>
         <td>{{item.Phone}}</td>
         <td>
-            <button ng-click="updateFunc(item)">Update</button>
+            <a href="/edit/{{item.Id}}">Edit</a>
             <button ng-click="deleteFunc(item)">Delete</button>
         </td>
     </tr>
