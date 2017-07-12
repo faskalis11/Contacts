@@ -1,0 +1,14 @@
+﻿<h2>Create</h2>
+<form name="createform">
+    <label>Name:</label>
+    <input type="text" name="Name" ng-model="contact.Name" required><br>
+    <label>Email:</label>
+    <input type="email" name="Email" ng-model="contact.Email" required><br>
+    <label>Phone:</label>
+    <input id="demo-info-message"
+           type="text"
+           pattern="[+]?\d{11}|\d{9}"
+           name="Telephone" ng-model="contact.Phone" required>
+    <br>
+    <input type="button" class="btn btn-primary" ng-click="create(item)" value="Create">
+</form>
