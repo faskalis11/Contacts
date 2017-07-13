@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace FirstWebApplication.Api.Controllers
+namespace Contacts.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactApiController : ApiController
     {
-        private readonly IContactRepository _contactRepository; //static?
+        private readonly IContactRepository _contactRepository;
 
         public ContactApiController()
         {

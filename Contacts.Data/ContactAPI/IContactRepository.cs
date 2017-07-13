@@ -8,7 +8,7 @@ namespace Contacts.Data.ContactAPI
         IEnumerable<Contact> Get();
         Contact Get(int id);
         Contact Create(Contact contact);
-        void Delete(int Id);
+        void Delete(int id);
         Contact Update(Contact contact);
     }
 }

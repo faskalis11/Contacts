@@ -18,9 +18,9 @@ namespace Contacts.Data.Repositories.Database
             return contact;
         }
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            _context.Contacts.Remove(_context.Contacts.Find(Id));
+            _context.Contacts.Remove(_context.Contacts.Find(id));
             _context.SaveChanges();
         }
 
@@ -41,9 +41,9 @@ namespace Contacts.Data.Repositories.Database
             return _context.Contacts;
         }
 
-        public Contact Get(int Id)
+        public Contact Get(int id)
         {
-            return _context.Contacts.Find(Id);
+            return _context.Contacts.Find(id);
         }
     }
 }

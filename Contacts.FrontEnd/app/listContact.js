@@ -5,6 +5,8 @@ contactApp.controller('contactController', ['$scope', '$http', function ($scope,
 
     var uri = 'http://localhost:50691/api/ContactApi';
 
+    var contact = {};
+
     $http.get(uri)
         .then(function (response) { self.contacts = response.data; });
 
@@ -61,16 +63,45 @@ contactApp.controller('contactEditController', function ($http, $routeParams, $l
     };
 });
 
+contactApp.controller('messageController', function ($http, $location, $routeParams) {
+    var self = this;
+
+    self.send = function (contactId) {
+        alert("fd");
+        $http({
+            method: 'POST',
+            url: 'http://localhost:50691/api/MessageApi',
+            params: { id: contactId},
+            data: self.message
+        }).then(function (response) {
+            $location.url("/");
+        });
+        
+    };
+    
+});
+
 contactApp.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
-        .when('/', { controller: 'contactController', templateUrl: 'app/templates/list.html' })
-        .when('/create', { controller: 'contactCreateController', templateUrl: 'app/templates/create.html' })
-        .when("/edit/:id", {
+        .when('/', {
+            controller: 'contactController',
+            templateUrl: 'app/templates/list.html'
+        })
+        .when('/create', {
+            controller: 'contactCreateController',
+            templateUrl: 'app/templates/create.html'
+        })
+        .when('/edit/:id', {
             templateUrl: "app/templates/edit.html",
             controller: "contactEditController"
+        })
+        .when('/newMessage', {
+            controller: 'messageController',
+            templateUrl: 'app/templates/newMessage.html'
         });
 });
+
 contactApp.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);

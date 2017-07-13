@@ -10,5 +10,16 @@ namespace Contacts.Data.Entities
         }
 
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Message> Messages { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contact>()
+                .ToTable("Contacts");
+
+            modelBuilder.Entity<Message>()
+                .ToTable("Messages");
+
+        }
     }
 }

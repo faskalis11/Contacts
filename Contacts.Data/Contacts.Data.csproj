@@ -50,10 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactAPI\IContactRepository.cs" />
+    <Compile Include="ContactAPI\IMessageRepository.cs" />
     <Compile Include="Entities\DataContextcs.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Database\ContactRepository.cs" />
+    <Compile Include="Repository\Database\MessageRepository.cs" />
     <Compile Include="Repository\InMemory\ContactRepository.cs" />
   </ItemGroup>
   <ItemGroup>

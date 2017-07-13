@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace FirstWebApplication.Api
+namespace contacts.Api
 {
     public static class WebApiConfig
     {
