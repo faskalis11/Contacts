@@ -1,12 +1,14 @@
 ﻿<h3>Send new message</h3>
 
 <div ng-controller="contactController as vm">
+    <label>Receiver:</label>
     <select ng-model="vm.contact" ng-options="item.Name for item in vm.contacts">
         <option ng-show="selectedContact == 0" value="">Choose member</option>
     </select>
 
     <br />
     <div ng-app="contactApp" ng-controller="messageController as vs">
+        <label>Message:</label>
         <input type="text" ng-model="vs.message.MessageText" placeholder="Your message text" />
         <br />
         <p ng-model="vs.message.HasBeenSent" hidden>false</p>

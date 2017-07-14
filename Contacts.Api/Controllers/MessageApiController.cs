@@ -37,6 +37,12 @@ namespace Contacts.Api.Controllers
             return Ok(message);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetMessageContact(int contactId) //fix this 
+        {
+            return Ok(); //fix
+        }
+
         [HttpPut]
         public IHttpActionResult PutMessage(int id, Message message)
         {

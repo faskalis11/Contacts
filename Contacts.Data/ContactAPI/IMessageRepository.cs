@@ -10,5 +10,6 @@ namespace Contacts.Data.ContactAPI
         Message Create(Message contact);
         void Delete(int id);
         Message Update(Message contact);
+        IEnumerable<Message> GetByContact();
     }
 }

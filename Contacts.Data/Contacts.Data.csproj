@@ -7,8 +7,8 @@
     <ProjectGuid>{0CC73242-A15C-4F61-B63E-B1154EED4948}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FirstWebApplication.Data</RootNamespace>
-    <AssemblyName>FirstWebApplication.Data</AssemblyName>
+    <RootNamespace>Contacts.Data</RootNamespace>
+    <AssemblyName>Contacts.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -51,7 +54,7 @@
   <ItemGroup>
     <Compile Include="ContactAPI\IContactRepository.cs" />
     <Compile Include="ContactAPI\IMessageRepository.cs" />
-    <Compile Include="Entities\DataContextcs.cs" />
+    <Compile Include="Entities\DataContext.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

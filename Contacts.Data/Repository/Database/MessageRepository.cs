@@ -28,6 +28,11 @@ namespace Contacts.Data.Repository.Database
             return _context.Messages;
         }
 
+        public IEnumerable<Message> GetByContact()
+        {
+            return _context.Messages; //fix this
+        }
+
         public Message Get(int id)
         {
             return _context.Messages.Find(id);

@@ -4,6 +4,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Messages</th>
         <th>Options</th>
     </tr>
     <tr ng-repeat="item in vm.contacts">
@@ -11,6 +12,7 @@
         <td>{{item.Name}}</td>
         <td>{{item.Email}}</td>
         <td>{{item.Phone}}</td>
+        <td ng-repeat="item in vm."></td>
         <td>
             <a class="btn btn-default" href="/edit/{{item.Id}}">Edit</a>
             <button class="btn btn-danger" ng-click="deleteFunc(item)">Delete</button>

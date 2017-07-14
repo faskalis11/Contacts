@@ -8,7 +8,8 @@ contactApp.controller('contactController', ['$scope', '$http', function ($scope,
     var contact = {};
 
     $http.get(uri)
-        .then(function (response) { self.contacts = response.data; });
+        .then(function (response) { self.contacts = response.data; })
+        ;
 
 
     var uriDelete = '/api/ContactApi';
