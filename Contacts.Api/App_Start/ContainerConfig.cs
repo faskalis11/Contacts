@@ -18,7 +18,6 @@ namespace Contacts.Api.App_Start
             var builder = new ContainerBuilder();
             var config = GlobalConfiguration.Configuration;
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-
             builder.RegisterType<DataContext>().InstancePerRequest();
             builder.RegisterType<ContactRepository>().As<IContactRepository>().InstancePerRequest();
             builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerRequest();

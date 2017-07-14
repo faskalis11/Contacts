@@ -7,31 +7,30 @@ contactApp.controller('contactController', ['$scope', '$http', function ($scope,
 
     var contact = {};
 
-    $http.get(uri)
-        .then(function (response) { self.contacts = response.data; })
-        ;
+    self.getContacts = function () {
+        $http.get(uri)
+            .then(function (response) { self.contacts = response.data; });
+    };
 
+    self.getContacts();
 
     var uriDelete = '/api/ContactApi';
+
     $scope.deleteFunc = function (contact) {
         $http.delete(uri + '/' + contact.Id).then(function (response) {
             var index = self.contacts.indexOf(contact);
             self.contacts.splice(index, 1);
         });
     };
-
-    var uriEdit = 'http://localhost:50691/api/ContactApi';
-
 }]);
 
 contactApp.controller('contactCreateController', function ($scope, $http, $location) {
-    $scope.contact = {};
-
     var self = this;
     var uriCreate = 'http://localhost:50691/api/ContactApi';
 
-    $scope.create = function () {
-        $http.post(uriCreate, $scope.contact).then(
+
+    self.create = function () {
+        $http.post(uriCreate, self.contact).then(
             function (response) {
                 $location.path("/");
             });
@@ -68,17 +67,27 @@ contactApp.controller('messageController', function ($http, $location, $routePar
     var self = this;
 
     self.send = function (contactId) {
-        alert("fd");
         $http({
             method: 'POST',
             url: 'http://localhost:50691/api/MessageApi',
-            params: { id: contactId},
+            params: { id: contactId },
             data: self.message
         }).then(function (response) {
             $location.url("/");
         });
-        
     };
+});
+
+contactApp.controller('messageListController', function ($http, $location) {
+    var self = this;
+    var uri = 'http://localhost:50691/api/MessageApi';
+
+    $http.get(uri)
+        .then(function (response) { self.messages = response.data; })
+
+    var contacts = {};
+
+    //get meail, name
     
 });
 
@@ -100,6 +109,10 @@ contactApp.config(function ($routeProvider, $locationProvider) {
         .when('/newMessage', {
             controller: 'messageController',
             templateUrl: 'app/templates/newMessage.html'
+        })
+        .when('/messageList', {
+            controller: 'messageListController',
+            templateUrl: 'app/templates/messageList.html'
         });
 });
 

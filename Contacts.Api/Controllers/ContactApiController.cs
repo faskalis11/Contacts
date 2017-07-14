@@ -12,9 +12,9 @@ namespace Contacts.Api.Controllers
     {
         private readonly IContactRepository _contactRepository;
 
-        public ContactApiController()
+        public ContactApiController(IContactRepository contactRepository)
         {
-            _contactRepository = new ContactRepository();
+            _contactRepository = contactRepository;
         }
 
         [HttpGet]

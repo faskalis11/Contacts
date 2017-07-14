@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\templates\edit.html" />
+    <Content Include="app\templates\messageList.html" />
     <Content Include="app\templates\newMessage.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

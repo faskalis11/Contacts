@@ -1,0 +1,19 @@
+﻿<h3>Message list</h3>
+
+<div>
+    <table class="table" ng-controller="messageListController as vm">
+        <tr>
+            <th>Contact name</th>
+            <th>Contact email</th>
+            <th>Message</th>
+            <th>Is Send?</th>
+        </tr>
+        <tr ng-repeat="item in vm.messages">
+            <td hidden>{{item.Id}}</td>
+            <td>{{item.SenderId}}</td>
+            <td>{{item.ReceiverId}}</td>
+            <td>{{item.MessageText}}</td>
+            <td>{{item.HasBeenSent}}</td>
+        </tr>
+    </table>
+</div>
