@@ -41,14 +41,27 @@ namespace Contacts.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/login")]
-        public HttpResponseMessage Login()
+        [Route("api/loginGoogle")]
+        public HttpResponseMessage LoginGoogle()
         {
-            var properties = new AuthenticationProperties() { RedirectUri = "api/surname" };
+            var properties = new AuthenticationProperties() { RedirectUri = "api/contactsapi" };
             Request.GetOwinContext().Authentication.Challenge(properties, "Google");
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
             response.RequestMessage = Request;
+            return response;
+        }
+
+        [HttpGet]
+        [Route("api/loginFacebook")]
+        public HttpResponseMessage LoginFacebook()
+        {
+            var properties = new AuthenticationProperties() { RedirectUri = "api/surname" };
+            Request.GetOwinContext().Authentication.Challenge(properties, "Facebook");
+
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            response.RequestMessage = Request;
+            var cookies = Request.Headers.GetCookies();
             return response;
         }
     }
