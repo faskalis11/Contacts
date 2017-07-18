@@ -65,7 +65,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\loginContact.js" />
     <Content Include="app\templates\edit.html" />
+    <Content Include="app\templates\login.html" />
     <Content Include="app\templates\messageList.html" />
     <Content Include="app\templates\newMessage.html" />
     <Content Include="Content\bootstrap-theme.css" />

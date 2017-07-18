@@ -1,0 +1,20 @@
+﻿<div class="wrapper" ng-app="contactApp" ng-controller="loginController">
+    <h2>Google login</h2>
+    <a ng-click="onGoogleLogin()" value="Login"><img src="/app/templates/img/gconnect.png"></a>
+    <label>{{gmail.username}}</label>
+    <label>{{gmail.email}}</label>
+    <img ng-src="{{g_image}}" style="width: 100px; height: 100px" />
+
+    <script type="text/javascript">
+        (
+            function () {
+                var p = document.createElement('script');
+                p.type = 'text/javascript';
+                p.async = true;
+                p.scr = 'https://apis.google.com/js/client.js?onload=onLoadFunction';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(p, s);
+            }
+        );
+    </script>
+</div>

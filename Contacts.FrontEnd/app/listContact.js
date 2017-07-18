@@ -1,5 +1,41 @@
 ﻿var contactApp = angular.module('contactApp', ['ngRoute']);
 
+contactApp.controller('loginController', ['$scope', function ($scope) {
+    var self = this;
+
+    $scope.gmail = {
+        username: "",
+        email: ""
+    };
+
+    $scope.onGoogleLogin = function () {
+        var params = {
+            'clientid': '174311077733-dvullj1eo81jm1nni3qarmd5o27egflh.apps.googleusercontent.com',
+            'cookiepolicy': 'single_host_origin',
+            'callback': function (result) {
+                if (result['status']['signed_in']) {
+                    gapi.client.load('plus', 'v1', function () {
+                        var request = gapi.client.plus.people.get({
+                            'userId': 'me'
+                        });
+                    request.execute(function (resp) {
+                        $scope.$apply(function () {
+                            $scope.gmail.username = resp.dispplayName;
+                            $scope.gmail.email = resp.emails[0].value;
+                            $scope.g_image = resp.image.url;
+                        });
+                    });
+                },
+            'approvalprompt': 'force',
+
+            'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+        };
+
+        gapi.auth.signIn(params);
+
+    };
+}]);
+
 contactApp.controller('contactController', ['$scope', '$http', function ($scope, $http) {
     var self = this;
 
@@ -113,6 +149,9 @@ contactApp.config(function ($routeProvider, $locationProvider) {
         .when('/messageList', {
             controller: 'messageListController',
             templateUrl: 'app/templates/messageList.html'
+        }).when('/login', {
+            controller: 'loginController',
+            templateUrl: 'app/templates/login.html'
         });
 });
 
