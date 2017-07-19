@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace contacts.Api
 {
@@ -9,10 +10,11 @@ namespace contacts.Api
         {
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
-      
+
 
             // Web API configuration and services
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("*", "*", "*") { SupportsCredentials = true };
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

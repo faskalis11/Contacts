@@ -18,8 +18,7 @@ namespace Contacts.Api.App_Start
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ExternalCookie,
-                ExpireTimeSpan = new TimeSpan(0, 30, 0),
-                LoginPath = new PathString("/api/nogo")
+                ExpireTimeSpan = new TimeSpan(0, 30, 0)
             });
 
             // Use a cookie to temporarily store information about a user logging in with a third party login provider

@@ -1,7 +1,4 @@
 ﻿using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -14,17 +11,6 @@ namespace Contacts.Api.Controllers
         {
             return Ok("Saulius");
         }
-
-        //[HttpGet]
-        //[Authorize]
-        //[Route("api/send/{phone:long}/{message}")]
-        //public IHttpActionResult Send(long phone, string message)
-        //{
-        //    var messagingService = new MessagingService("sm.euro@gmail.com", "");
-        //    var result = messagingService.SendMessage(new SmsMessage($"+{phone}", message, "EX0235200"));
-
-        //    return Ok(result);
-        //}
 
         [Authorize]
         [Route("api/surname")]
@@ -44,7 +30,9 @@ namespace Contacts.Api.Controllers
         [Route("api/loginGoogle")]
         public HttpResponseMessage LoginGoogle()
         {
-            var properties = new AuthenticationProperties() { RedirectUri = "api/contactsapi" };
+            var properties = new AuthenticationProperties() {
+                RedirectUri = "http://localhost:50712/"
+            };
             Request.GetOwinContext().Authentication.Challenge(properties, "Google");
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
@@ -56,7 +44,7 @@ namespace Contacts.Api.Controllers
         [Route("api/loginFacebook")]
         public HttpResponseMessage LoginFacebook()
         {
-            var properties = new AuthenticationProperties() { RedirectUri = "api/surname" };
+            var properties = new AuthenticationProperties() { RedirectUri = "http://localhost:50712/" };
             Request.GetOwinContext().Authentication.Challenge(properties, "Facebook");
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);

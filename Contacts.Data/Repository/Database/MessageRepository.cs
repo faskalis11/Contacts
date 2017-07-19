@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
 using Contacts.Data.Entities;
+using System.Linq;
 
 namespace Contacts.Data.Repository.Database
 {
@@ -25,7 +26,7 @@ namespace Contacts.Data.Repository.Database
 
         public IEnumerable<Message> Get()
         {
-            return _context.Messages;
+            return _context.Messages.ToList();
         }
 
         public IEnumerable<Message> GetByContact()

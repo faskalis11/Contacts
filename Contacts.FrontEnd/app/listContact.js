@@ -1,12 +1,23 @@
-﻿var contactApp = angular.module('contactApp', ['ngRoute']);
+﻿
+var contactApp = angular.module('contactApp', ['ngRoute']);
 
 contactApp.controller('loginController', ['$scope', '$http', function ($scope, $http) {
+    $scope.providers = [];
     var self = this;
-    var uriLogin = 'http://localhost:50691/api/login';
-    $scope.onGoogleLogin = function () {
+    var uriLogin = 'http://localhost:50691';
+    $scope.searchPattern = "";
+
+    /*$scope.onGoogleLogin = function () {
         $http.get(uriLogin)
             .then(function (response) { self.google = response.data; });
-    }
+    }*/
+    $scope.onGoogleLogin = function () {
+
+
+        $window.location.href = uriLogin + '/api/loginGoogle';
+
+    };
+
 }]);
 
 contactApp.controller('contactController', ['$scope', '$http', function ($scope, $http) {
@@ -15,6 +26,7 @@ contactApp.controller('contactController', ['$scope', '$http', function ($scope,
     var uri = 'http://localhost:50691/api/ContactApi';
 
     var contact = {};
+    self.contacts = [];
 
     self.getContacts = function () {
         $http.get(uri)
@@ -92,7 +104,7 @@ contactApp.controller('messageListController', function ($http, $location) {
     var uri = 'http://localhost:50691/api/MessageApi';
 
     $http.get(uri)
-        .then(function (response) { self.messages = response.data; })
+        .then(function (response) { self.messages = response.data; });
 
     var contacts = {};
 
@@ -100,8 +112,10 @@ contactApp.controller('messageListController', function ($http, $location) {
     
 });
 
-contactApp.config(function ($routeProvider, $locationProvider) {
+contactApp.config(function ($routeProvider, $locationProvider, $httpProvider) {
     $locationProvider.html5Mode(true);
+    $httpProvider.defaults.withCredentials = true;
+
     $routeProvider
         .when('/', {
             controller: 'contactController',
@@ -126,8 +140,29 @@ contactApp.config(function ($routeProvider, $locationProvider) {
             controller: 'loginController',
             templateUrl: 'app/templates/login.html'
         });
+
 });
 
-contactApp.config(['$qProvider', function ($qProvider) {
-    $qProvider.errorOnUnhandledRejections(false);
-}]);
+contactApp.service('authInterceptor', function ($q) { //custom interceptorius
+    var service = this;
+
+    service.responseError = function (response) {
+        if (response.status === 401) {
+            window.location = "/login";
+        }
+        if (response.status === 302) {
+            window.location = "/login";
+        }
+        return $q.reject(response);
+    };
+});
+
+contactApp.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+});
+
+
+// http://localhost:50712/login
+//contactApp.config(['$qProvider', function ($qProvider) {
+//    $qProvider.errorOnUnhandledRejections(false);
+//}]);

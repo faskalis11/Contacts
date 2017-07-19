@@ -1,13 +1,12 @@
 ﻿using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
-using Contacts.Data.Repositories.Database;
-using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Http.Cors;
+
 
 namespace Contacts.Api.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class ContactApiController : ApiController
     {
         private readonly IContactRepository _contactRepository;
@@ -18,9 +17,23 @@ namespace Contacts.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Contact> Get()
+        public  IHttpActionResult Get()
         {
-            return _contactRepository.Get();
+            //
+            SMSController sms = new SMSController();
+            sms.SendMessage(null);
+
+            //
+            try
+            {
+                var req = Request;
+                return Ok(_contactRepository.Get());
+            }
+            catch (System.Exception ex)
+            {
+                var a = ex.Message;
+            }
+            return BadRequest();
         }
 
         [HttpGet]

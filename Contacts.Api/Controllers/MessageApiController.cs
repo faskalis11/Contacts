@@ -1,14 +1,14 @@
 ﻿using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
+using Contacts.Data.Repository.Database;
 using System.Collections.Generic;
 using System.Net;
 using System.Web.Http;
-using System.Web.Http.Cors;
-using Contacts.Data.Repository.Database;
 
 namespace Contacts.Api.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class MessageApiController : ApiController
     {
         
@@ -20,15 +20,26 @@ namespace Contacts.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Message> GetMessages()
+        public IHttpActionResult GetMessages()
         {
-            return _messageRepository.Get();
+            try
+            {
+                var req = Request;
+                return Ok(_messageRepository.Get());
+            }
+            catch (System.Exception ex)
+            {
+                var a = ex.Message;
+            }
+            return BadRequest();
+
         }
 
         [HttpGet]
         public IHttpActionResult GetMessage(int id)
         {
             Message message = _messageRepository.Get(id);
+
             if (message == null)
             {
                 return NotFound();
