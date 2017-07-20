@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Contacts.Api.Models.Email
 {
-    public class RootObject
+    public class MailGrid
     {
         public List<Personalization> personalizations { get; set; }
         public From from { get; set; }

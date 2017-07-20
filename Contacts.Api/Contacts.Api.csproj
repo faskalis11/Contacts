@@ -178,7 +178,7 @@
     <Compile Include="Models\Email\Content.cs" />
     <Compile Include="Models\Email\From.cs" />
     <Compile Include="Models\Email\Personalization.cs" />
-    <Compile Include="Models\Email\RootObject.cs" />
+    <Compile Include="Models\Email\MailGrid.cs" />
     <Compile Include="Models\Email\To.cs" />
     <Compile Include="Models\EsendexMessage.cs" />
     <Compile Include="Models\IdentityClass.cs" />

@@ -1,6 +1,8 @@
 ﻿using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
 using Contacts.Data.Repository.Database;
+using NLog;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -27,7 +29,7 @@ namespace Contacts.Api.Controllers
                 var req = Request;
                 return Ok(_messageRepository.Get());
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 var a = ex.Message;
             }
@@ -59,15 +61,27 @@ namespace Contacts.Api.Controllers
         [HttpPost]
         public IHttpActionResult PostMessage(int id, [FromBody] Message message)
         {
-            message.ReceiverId = id;
-            message.SenderId = id;
-            _messageRepository.Create(message);
-
-            if (message.HasBeenSent == true)
+            try
             {
-                var T = Task.Run(() => new SMSController().MessageResponse(message));
+                message.ReceiverId = id;
+                message.SenderId = id;
+                _messageRepository.Create(message);
+
+                if (message.HasBeenSent == true)
+                {
+                    //var TSms = Task.Run(() => new SMSController().MessageResponse(message));
+                    var TMail = Task.Run(() => new EmailController().SendMail(message));
+                }
+                return Ok(message);
             }
-            return Ok(message);
+            catch (Exception ex)
+            {
+                Logger logger = LogManager.GetCurrentClassLogger(); //DI
+                logger.Error("Something went wrong :(");
+                logger.Log(LogLevel.Info, "There some info");
+                return BadRequest();
+            }
+            
         }
 
         [HttpDelete]
