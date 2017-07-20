@@ -162,6 +162,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\IEmailSender.cs" />
+    <Compile Include="API\ISmsSender.cs" />
     <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />

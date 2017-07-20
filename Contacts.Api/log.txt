@@ -1,0 +1,12 @@
+2017-07-20 15:24:33.7061|ERROR|Contacts.Api.Controllers.ContactApiController|Something went wrong :(
+2017-07-20 15:24:32.6864|ERROR|Contacts.Api.Controllers.ContactApiController|Something went wrong :(
+2017-07-20 15:24:32.6864|ERROR|Contacts.Api.Controllers.ContactApiController|Something went wrong :(
+2017-07-20 15:24:35.0779|ERROR|Contacts.Api.Controllers.ContactApiController|Something went wrong :(
+2017-07-20 15:24:37.5948|INFO|Contacts.Api.Controllers.ContactApiController|There some info: System.Exception: Exception of type 'System.Exception' was thrown.
+   at Contacts.Api.Controllers.ContactApiController.Post(Contact contact) in C:\Users\ignas.jankauskas\Documents\Visual Studio 2017\Projects\Contacts\Contacts.Api\Controllers\ContactApiController.cs:line 73
+2017-07-20 15:24:37.5948|INFO|Contacts.Api.Controllers.ContactApiController|There some info: System.Exception: Exception of type 'System.Exception' was thrown.
+   at Contacts.Api.Controllers.ContactApiController.Post(Contact contact) in C:\Users\ignas.jankauskas\Documents\Visual Studio 2017\Projects\Contacts\Contacts.Api\Controllers\ContactApiController.cs:line 73
+2017-07-20 15:24:37.5948|INFO|Contacts.Api.Controllers.ContactApiController|There some info: System.Exception: Exception of type 'System.Exception' was thrown.
+   at Contacts.Api.Controllers.ContactApiController.Post(Contact contact) in C:\Users\ignas.jankauskas\Documents\Visual Studio 2017\Projects\Contacts\Contacts.Api\Controllers\ContactApiController.cs:line 73
+2017-07-20 15:24:37.5948|INFO|Contacts.Api.Controllers.ContactApiController|There some info: System.Exception: Exception of type 'System.Exception' was thrown.
+   at Contacts.Api.Controllers.ContactApiController.Post(Contact contact) in C:\Users\ignas.jankauskas\Documents\Visual Studio 2017\Projects\Contacts\Contacts.Api\Controllers\ContactApiController.cs:line 73

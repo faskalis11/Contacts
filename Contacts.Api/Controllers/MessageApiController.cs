@@ -15,6 +15,14 @@ namespace Contacts.Api.Controllers
     {
         
         private readonly IMessageRepository _messageRepository;
+        private readonly SmsController _smsController;
+        private readonly EmailController _emailController;
+        public MessageApiController()
+        {
+
+        }
+
+        Logger logger = LogManager.GetCurrentClassLogger(); 
 
         public MessageApiController()
         {
@@ -59,26 +67,25 @@ namespace Contacts.Api.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult PostMessage(int id, [FromBody] Message message)
+        public async Task<IHttpActionResult> PostMessage(int id, [FromBody] Message message)
         {
             try
             {
                 message.ReceiverId = id;
                 message.SenderId = id;
                 _messageRepository.Create(message);
-
-                if (message.HasBeenSent == true)
+                if (message.HasBeenSent == true) //atskirti
                 {
-                    //var TSms = Task.Run(() => new SMSController().MessageResponse(message));
-                    var TMail = Task.Run(() => new EmailController().SendMail(message));
+                    //var TSms = Task.Run(() => new SmsController().MessageResponse(message));
+                    //var TMail = Task.Run(() => new EmailController().SendMail(message));
+                    await _emailController.SendMail(message);
                 }
                 return Ok(message);
             }
             catch (Exception ex)
             {
-                Logger logger = LogManager.GetCurrentClassLogger(); //DI
-                logger.Error("Something went wrong :(");
-                logger.Log(LogLevel.Info, "There some info");
+                
+                logger.Error("Something went wrong :(" + ex);
                 return BadRequest();
             }
             

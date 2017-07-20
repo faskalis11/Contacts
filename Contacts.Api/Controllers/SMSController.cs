@@ -1,4 +1,5 @@
-﻿using Contacts.Api.Models;
+﻿using Contacts.Api.API;
+using Contacts.Api.Models;
 using Contacts.Data.Models;
 using Contacts.Data.Repositories.Database;
 using Newtonsoft.Json;
@@ -9,7 +10,7 @@ using System.Web.Configuration;
 
 namespace Contacts.Api.Controllers
 {
-    public class SMSController 
+    public class SmsController : ISmsSender
     {
         
         public async Task<HttpResponseMessage> MessageResponse(Message message)

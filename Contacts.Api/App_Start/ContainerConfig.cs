@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using Contacts.Api.API;
+using Contacts.Api.Controllers;
 using Contacts.Data.ContactAPI;
 using Contacts.Data.Entities;
 using Contacts.Data.Repositories.Database;
@@ -21,6 +23,9 @@ namespace Contacts.Api.App_Start
             builder.RegisterType<DataContext>().InstancePerRequest();
             builder.RegisterType<ContactRepository>().As<IContactRepository>().InstancePerRequest();
             builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerRequest();
+            // builder.RegisterType<> 
+            builder.RegisterType<SmsController>().As<ISmsSender>().InstancePerRequest();
+            builder.RegisterType<EmailController>().As<IEmailSender>().InstancePerRequest();
             Container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(Container);

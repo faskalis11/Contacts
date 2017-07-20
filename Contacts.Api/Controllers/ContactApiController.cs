@@ -1,5 +1,7 @@
 ﻿using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
+using NLog;
+using System;
 using System.Web.Http;
 
 
@@ -10,6 +12,7 @@ namespace Contacts.Api.Controllers
     public class ContactApiController : ApiController
     {
         private readonly IContactRepository _contactRepository;
+        Logger logger = LogManager.GetCurrentClassLogger(); //DI
 
         public ContactApiController(IContactRepository contactRepository)
         {
@@ -24,7 +27,7 @@ namespace Contacts.Api.Controllers
                 var req = Request;
                 return Ok(_contactRepository.Get());
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 var a = ex.Message;
             }
@@ -57,7 +60,6 @@ namespace Contacts.Api.Controllers
         [HttpPut]
         public IHttpActionResult Put(Contact contact)
         {
-            //Validacija
             _contactRepository.Update(contact);
             return Ok(contact);
         }
@@ -65,10 +67,17 @@ namespace Contacts.Api.Controllers
         [HttpPost]
         public IHttpActionResult Post(Contact contact)
         {
-            //validacija
-            _contactRepository.Create(contact);
-            return Ok(contact);
-        }
+            try
+            {
+                _contactRepository.Create(contact);
+                return Ok(contact);
 
+            } catch (Exception ex)
+            {
+                
+                logger.Error("Something went wrong :(" + ex);
+                return BadRequest();
+            }
+        }
     }
 }

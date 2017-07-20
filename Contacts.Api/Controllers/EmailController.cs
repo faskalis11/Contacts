@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using Contacts.Data.Repositories.Database;
 using Contacts.Api.Models.Email;
 using System.Collections.Generic;
+using System.Web.Configuration;
+using Contacts.Api.API;
 
 namespace Contacts.Api.Controllers
 {
-    public class EmailController
+    public class EmailController : IEmailSender
     {
         public async Task<HttpResponseMessage> SendMail(Message message)
         {
@@ -49,12 +51,11 @@ namespace Contacts.Api.Controllers
                 StringContent content = new StringContent(JsonConvert.SerializeObject(model));
 
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                string key = "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";
+                var key = WebConfigurationManager.AppSettings["sendGridKey"];
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", key);
                 HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
                 request.Content = content;
                 var response = await client.SendAsync(request);
-
                 return response;
             }
         }
