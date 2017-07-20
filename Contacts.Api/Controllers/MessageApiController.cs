@@ -1,8 +1,8 @@
 ﻿using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
 using Contacts.Data.Repository.Database;
-using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Contacts.Api.Controllers
@@ -48,12 +48,6 @@ namespace Contacts.Api.Controllers
             return Ok(message);
         }
 
-        //[HttpGet]
-        //public IHttpActionResult GetMessageContact(int contactId) //fix this 
-        //{
-        //    return Ok(); //fix
-        //}
-
         [HttpPut]
         public IHttpActionResult PutMessage(int id, Message message)
         {
@@ -65,11 +59,14 @@ namespace Contacts.Api.Controllers
         [HttpPost]
         public IHttpActionResult PostMessage(int id, [FromBody] Message message)
         {
-            //message
-            message.HasBeenSent = false;
             message.ReceiverId = id;
             message.SenderId = id;
             _messageRepository.Create(message);
+
+            if (message.HasBeenSent == true)
+            {
+                var T = Task.Run(() => new SMSController().MessageResponse(message));
+            }
             return Ok(message);
         }
 

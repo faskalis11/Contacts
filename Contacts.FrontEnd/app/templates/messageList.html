@@ -7,6 +7,7 @@
             <th>Contact email</th>
             <th>Message</th>
             <th>Is Send?</th>
+            <th>Send now</th>
         </tr>
         <tr ng-repeat="item in vm.messages">
             <td hidden>{{item.Id}}</td>
@@ -14,6 +15,10 @@
             <td>{{item.ReceiverId}}</td>
             <td>{{item.MessageText}}</td>
             <td>{{item.HasBeenSent}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="sendMessage(item)">Send Now</button>
+                <button class="btn btn-danger" ng-click="delete(item)">Delete</button>
+            </td>
         </tr>
     </table>
 </div>

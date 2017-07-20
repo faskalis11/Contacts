@@ -97,6 +97,8 @@ contactApp.controller('messageController', function ($http, $location, $routePar
             $location.url("/");
         });
     };
+
+
 });
 
 contactApp.controller('messageListController', function ($http, $location) {
@@ -111,6 +113,7 @@ contactApp.controller('messageListController', function ($http, $location) {
     //get meail, name
     
 });
+
 
 contactApp.config(function ($routeProvider, $locationProvider, $httpProvider) {
     $locationProvider.html5Mode(true);

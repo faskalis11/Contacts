@@ -19,11 +19,6 @@ namespace Contacts.Api.Controllers
         [HttpGet]
         public  IHttpActionResult Get()
         {
-            //
-            SMSController sms = new SMSController();
-            sms.SendMessage(null);
-
-            //
             try
             {
                 var req = Request;
