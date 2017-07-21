@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\content\creative.css" />
     <Content Include="app\loginContact.js" />
     <Content Include="app\templates\edit.html" />
     <Content Include="app\templates\login.html" />

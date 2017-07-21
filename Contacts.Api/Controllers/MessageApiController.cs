@@ -1,4 +1,5 @@
-﻿using Contacts.Data.ContactAPI;
+﻿using Contacts.Api.API;
+using Contacts.Data.ContactAPI;
 using Contacts.Data.Models;
 using Contacts.Data.Repository.Database;
 using NLog;
@@ -15,19 +16,18 @@ namespace Contacts.Api.Controllers
     {
         
         private readonly IMessageRepository _messageRepository;
-        private readonly SmsController _smsController;
-        private readonly EmailController _emailController;
-        public MessageApiController()
+        private readonly ISmsSender _smsController;
+        private readonly IEmailSender _emailController;
+
+        public MessageApiController(IMessageRepository messageRepository, ISmsSender smsController, IEmailSender emailController)
         {
+            _messageRepository = messageRepository;
+            _smsController = smsController;
+            _emailController = emailController;
 
         }
 
         Logger logger = LogManager.GetCurrentClassLogger(); 
-
-        public MessageApiController()
-        {
-            _messageRepository = new MessageRepository();
-        }
 
         [HttpGet]
         public IHttpActionResult GetMessages()
@@ -79,6 +79,7 @@ namespace Contacts.Api.Controllers
                     //var TSms = Task.Run(() => new SmsController().MessageResponse(message));
                     //var TMail = Task.Run(() => new EmailController().SendMail(message));
                     await _emailController.SendMail(message);
+                    await _smsController.MessageResponse(message);
                 }
                 return Ok(message);
             }

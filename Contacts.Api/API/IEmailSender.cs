@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Contacts.Api.API
 {
-    interface IEmailSender
+    public interface IEmailSender
     {
         Task<HttpResponseMessage> SendMail(Message message);
     }
